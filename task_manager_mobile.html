@@ -189,9 +189,16 @@ function updateFileStatus(){
   else{el.className='file-status';el.textContent='ยังไม่ได้เชื่อมกับไฟล์';}
 }
 
+function downloadJson(data){
+  const blob=new Blob([data],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='tasks_data.json';a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('💾 ดาวน์โหลด tasks_data.json แล้ว','success');
+}
+
 async function saveFile(){
   const data=JSON.stringify({tasks,meta:{savedAt:new Date().toISOString(),version:1}},null,2);
-  // Desktop Chrome: ใช้ File System Access API
   if(window.showSaveFilePicker){
     try{
       if(!fileHandle){
@@ -204,15 +211,14 @@ async function saveFile(){
       await writable.write(data);await writable.close();
       updateFileStatus();
       showToast('💾 บันทึกลง '+fileHandle.name+' แล้ว','success');
-    }catch(err){if(err.name!=='AbortError')showToast('บันทึกไม่ได้: '+err.message,'error');}
+    }catch(err){
+      if(err.name==='AbortError')return;
+      fileHandle=null;updateFileStatus();
+      downloadJson(data);
+    }
     return;
   }
-  // Mobile / fallback: download
-  const blob=new Blob([data],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download='tasks_data.json';a.click();
-  URL.revokeObjectURL(a.href);
-  showToast('💾 ดาวน์โหลด tasks_data.json แล้ว','success');
+  downloadJson(data);
 }
 
 function loadFromFile(input){
