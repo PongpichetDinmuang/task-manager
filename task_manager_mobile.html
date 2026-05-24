@@ -199,7 +199,9 @@ function downloadJson(data){
 
 async function saveFile(){
   const data=JSON.stringify({tasks,meta:{savedAt:new Date().toISOString(),version:1}},null,2);
-  if(window.showSaveFilePicker){
+  // ใช้ File System API เฉพาะ desktop (non-mobile) เท่านั้น
+  const isDesktop=window.showSaveFilePicker && !/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  if(isDesktop){
     try{
       if(!fileHandle){
         fileHandle=await window.showSaveFilePicker({
@@ -218,6 +220,7 @@ async function saveFile(){
     }
     return;
   }
+  // มือถือ / fallback → download เสมอ
   downloadJson(data);
 }
 
