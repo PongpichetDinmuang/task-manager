@@ -16,9 +16,7 @@ A lightweight, privacy-first task manager that runs entirely in your browser —
 ### Mobile (iPhone / Android)
 Open the link below in **Safari** or **Chrome**:
 
-👉 **[https://your-username.github.io/your-repo/task_manager.html](https://your-username.github.io/your-repo/task_manager.html)**
-
-> Replace the URL with your own GitHub Pages link.
+👉 **(https://pongpichetdinmuang.github.io/task-manager/task_manager.html)**
 
 ---
 
