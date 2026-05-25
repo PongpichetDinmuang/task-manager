@@ -2,7 +2,7 @@
 
 A lightweight, privacy-first task manager that runs entirely in your browser — no installation, no account, no internet required.
 
-แอปจัดการงานแบบเบาๆ ที่รันในเบราว์เซอร์ล้วนๆ ไม่ต้องติดตั้ง ไม่ต้องสมัครสมาชิก ไม่ต้องต่ออินเทอร์เน็ต
+แอปจัดการแผนงานแบบเบาๆ ที่รันในเบราว์เซอร์ล้วนๆ ไม่ต้องติดตั้ง ไม่ต้องสมัครสมาชิก ไม่ต้องต่ออินเทอร์เน็ต
 
 ---
 
